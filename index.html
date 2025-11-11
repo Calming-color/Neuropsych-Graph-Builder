@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neuropsychological Assessment Calculator & Grapher</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Neuropsychological Assessment Calculator</h1>
+            <p class="subtitle">Comprehensive tool for test scoring, data visualization, and report generation</p>
+        </header>
+
+        <!-- Patient Information -->
+        <section class="card">
+            <h2>Patient Information</h2>
+            <div class="form-group">
+                <label for="patientName">Patient Name:</label>
+                <input type="text" id="patientName" placeholder="Enter patient name">
+            </div>
+            <div class="form-group">
+                <label for="assessmentDate">Assessment Date:</label>
+                <input type="date" id="assessmentDate">
+            </div>
+        </section>
+
+        <!-- Domain Management -->
+        <section class="card">
+            <h2>Cognitive Domains</h2>
+            <div class="form-group">
+                <label for="domainName">Add Domain:</label>
+                <div class="input-with-button">
+                    <input type="text" id="domainName" placeholder="e.g., Attention, Memory, Language">
+                    <button onclick="addDomain()" class="btn-primary">Add Domain</button>
+                </div>
+            </div>
+            <div id="domainsList" class="domains-list">
+                <!-- Domains will be added here -->
+            </div>
+        </section>
+
+        <!-- Test Entry -->
+        <section class="card">
+            <h2>Test Entry</h2>
+            <div class="test-entry-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="testName">Test/Subtest Name:</label>
+                        <input type="text" id="testName" placeholder="e.g., WAIS-IV Digit Span">
+                    </div>
+                    <div class="form-group">
+                        <label for="rawScore">Raw Score (optional):</label>
+                        <input type="number" id="rawScore" placeholder="Raw score">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="scoreType">Score Type:</label>
+                        <select id="scoreType" onchange="updateScoreInput()">
+                            <option value="t">T-Score (M=50, SD=10)</option>
+                            <option value="z">Z-Score (M=0, SD=1)</option>
+                            <option value="scaled">Scaled Score (M=10, SD=3)</option>
+                            <option value="standard">Standard Score (M=100, SD=15)</option>
+                            <option value="percentile">Percentile</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="standardScore">Standard Score:</label>
+                        <input type="number" id="standardScore" step="0.1" placeholder="Enter score">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Assign to Domain(s):</label>
+                    <div id="domainCheckboxes" class="domain-checkboxes">
+                        <p class="hint">Add domains above first</p>
+                    </div>
+                </div>
+
+                <button onclick="addTest()" class="btn-primary btn-large">Add Test to Assessment</button>
+            </div>
+        </section>
+
+        <!-- Test List -->
+        <section class="card">
+            <h2>Assessment Battery</h2>
+            <div id="testsList" class="tests-list">
+                <p class="hint">No tests added yet. Add tests above to build your assessment battery.</p>
+            </div>
+        </section>
+
+        <!-- Reference Lines -->
+        <section class="card">
+            <h2>Reference Lines (Optional)</h2>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="premorbidScore">Premorbid Estimate (T-Score):</label>
+                    <input type="number" id="premorbidScore" placeholder="e.g., 50">
+                </div>
+                <div class="form-group">
+                    <label for="overallScore">Overall Battery Score (T-Score):</label>
+                    <input type="number" id="overallScore" placeholder="e.g., 45">
+                </div>
+            </div>
+        </section>
+
+        <!-- Actions -->
+        <section class="card actions-section">
+            <h2>Generate Outputs</h2>
+            <div class="button-group">
+                <button onclick="generateDataTable()" class="btn-primary">Generate Data Table</button>
+                <button onclick="generateGraph('line')" class="btn-primary">Line Graph</button>
+                <button onclick="generateGraph('bar')" class="btn-primary">Bar Chart</button>
+                <button onclick="generateGraph('profile')" class="btn-primary">Profile Plot</button>
+                <button onclick="exportToImage()" class="btn-secondary">Export Graph</button>
+                <button onclick="exportTableToHTML()" class="btn-secondary">Export Table</button>
+                <button onclick="clearAll()" class="btn-danger">Clear All</button>
+            </div>
+        </section>
+
+        <!-- Data Table Output -->
+        <section class="card" id="dataTableSection" style="display: none;">
+            <h2>Data Table</h2>
+            <div id="dataTableContainer"></div>
+        </section>
+
+        <!-- Graph Output -->
+        <section class="card" id="graphSection" style="display: none;">
+            <h2>Visualization</h2>
+            <div class="graph-container">
+                <canvas id="assessmentChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Domain Means -->
+        <section class="card" id="domainMeansSection" style="display: none;">
+            <h2>Domain Mean Scores</h2>
+            <div id="domainMeansContainer"></div>
+        </section>
+
+        <footer>
+            <p>Neuropsychological Assessment Calculator - For clinical and research use</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
