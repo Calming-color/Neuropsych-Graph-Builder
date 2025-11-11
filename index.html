@@ -6,6 +6,7 @@
     <title>Neuropsychological Assessment Calculator & Grapher</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="testLibrary.js"></script>
 </head>
 <body>
     <div class="container">
@@ -27,6 +28,44 @@
             </div>
         </section>
 
+        <!-- Template Management -->
+        <section class="card">
+            <h2>Assessment Templates</h2>
+            <p class="subtitle-text">Quick-load pre-configured test batteries or save your own custom templates</p>
+            <div class="template-controls">
+                <div class="form-group">
+                    <label for="templateSelect">Load Template:</label>
+                    <select id="templateSelect" onchange="loadTemplate()">
+                        <option value="">-- Select a Template --</option>
+                        <option value="comprehensive">Comprehensive Adult Battery</option>
+                        <option value="memory">Memory-Focused Assessment</option>
+                        <option value="executive">Executive Function Battery</option>
+                        <option value="adhd">ADHD Evaluation</option>
+                        <option value="dementia">Dementia Screening</option>
+                        <option value="tbi">TBI Assessment</option>
+                        <option value="learning">Learning Disability Evaluation</option>
+                        <option value="pediatric">Pediatric Comprehensive</option>
+                    </select>
+                </div>
+                <div class="button-row">
+                    <button onclick="saveCurrentAsTemplate()" class="btn-secondary">Save Current as Template</button>
+                    <button onclick="clearTemplate()" class="btn-secondary">Clear All Tests</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Test Library Browser -->
+        <section class="card">
+            <h2>Test Library Browser</h2>
+            <p class="subtitle-text">Browse and select from 150+ common neuropsychological tests</p>
+            <div class="library-search">
+                <input type="text" id="librarySearch" placeholder="Search tests..." onkeyup="filterTestLibrary()">
+            </div>
+            <div id="testLibraryBrowser" class="test-library-browser">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </section>
+
         <!-- Domain Management -->
         <section class="card">
             <h2>Cognitive Domains</h2>
@@ -44,7 +83,8 @@
 
         <!-- Test Entry -->
         <section class="card">
-            <h2>Test Entry</h2>
+            <h2>Manual Test Entry</h2>
+            <p class="subtitle-text">Manually enter test scores or use the Test Library Browser above</p>
             <div class="test-entry-form">
                 <div class="form-row">
                     <div class="form-group">
@@ -52,8 +92,19 @@
                         <input type="text" id="testName" placeholder="e.g., WAIS-IV Digit Span">
                     </div>
                     <div class="form-group">
+                        <label for="parentTest">Parent Test (optional):</label>
+                        <input type="text" id="parentTest" placeholder="e.g., WAIS-IV">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
                         <label for="rawScore">Raw Score (optional):</label>
-                        <input type="number" id="rawScore" placeholder="Raw score">
+                        <input type="text" id="rawScore" placeholder="Raw score or -- or n/a">
+                    </div>
+                    <div class="form-group">
+                        <label for="qualitativeData">Qualitative Data (optional):</label>
+                        <input type="text" id="qualitativeData" placeholder="e.g., 3 errors, false positives">
                     </div>
                 </div>
 
@@ -70,7 +121,7 @@
                     </div>
                     <div class="form-group">
                         <label for="standardScore">Standard Score:</label>
-                        <input type="number" id="standardScore" step="0.1" placeholder="Enter score">
+                        <input type="text" id="standardScore" step="0.1" placeholder="Enter score or -- or n/a">
                     </div>
                 </div>
 

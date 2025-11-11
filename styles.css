@@ -426,3 +426,237 @@ footer {
 .card {
     animation: fadeIn 0.5s ease-out;
 }
+
+/* Template Management */
+.subtitle-text {
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+}
+
+.template-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.button-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.button-row button {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Test Library Browser */
+.library-search {
+    margin-bottom: 15px;
+}
+
+.library-search input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+.library-search input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.test-library-browser {
+    max-height: 500px;
+    overflow-y: auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    background: #fafafa;
+}
+
+.domain-section {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.domain-section:last-child {
+    border-bottom: none;
+}
+
+.domain-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 12px 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    transition: background 0.3s;
+    user-select: none;
+}
+
+.domain-header:hover {
+    background: linear-gradient(135deg, #7688eb 0%, #8555b3 100%);
+}
+
+.domain-header .toggle-icon {
+    font-size: 1.2em;
+    transition: transform 0.3s;
+}
+
+.domain-header.collapsed .toggle-icon {
+    transform: rotate(-90deg);
+}
+
+.parent-tests {
+    background: white;
+}
+
+.parent-test-item {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.parent-test-header {
+    background: #f8f9fa;
+    padding: 10px 15px 10px 30px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+    transition: background 0.2s;
+    user-select: none;
+}
+
+.parent-test-header:hover {
+    background: #e9ecef;
+}
+
+.parent-test-header .toggle-icon {
+    font-size: 1em;
+    transition: transform 0.3s;
+    color: #667eea;
+}
+
+.parent-test-header.collapsed .toggle-icon {
+    transform: rotate(-90deg);
+}
+
+.subtests-list {
+    background: white;
+    padding: 5px 0;
+}
+
+.subtest-item {
+    padding: 8px 15px 8px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.2s;
+    border-left: 3px solid transparent;
+}
+
+.subtest-item:hover {
+    background: #f8f9fa;
+    border-left-color: #667eea;
+}
+
+.subtest-name {
+    color: #333;
+    font-size: 0.9em;
+}
+
+.add-test-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 3px;
+    font-size: 0.85em;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.add-test-btn:hover {
+    background: #764ba2;
+    transform: translateY(-1px);
+}
+
+.add-test-btn:active {
+    transform: translateY(0);
+}
+
+/* Nested Test Display in Assessment Battery */
+.test-item.has-parent {
+    margin-left: 20px;
+    border-left-color: #764ba2;
+}
+
+.test-item.parent-test {
+    background: #e7e7ff;
+    border-left-color: #667eea;
+    border-left-width: 5px;
+}
+
+.parent-indicator {
+    font-size: 0.85em;
+    color: #667eea;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+/* Performance range colors in tables */
+.perf-extremely-low {
+    background-color: rgba(220, 53, 69, 0.15);
+    color: #721c24;
+}
+
+.perf-low {
+    background-color: rgba(253, 126, 20, 0.15);
+    color: #7a3e00;
+}
+
+.perf-low-avg {
+    background-color: rgba(255, 193, 7, 0.15);
+    color: #856404;
+}
+
+.perf-average {
+    background-color: rgba(40, 167, 69, 0.15);
+    color: #155724;
+}
+
+.perf-high-avg {
+    background-color: rgba(32, 201, 151, 0.15);
+    color: #0c5460;
+}
+
+.perf-superior {
+    background-color: rgba(23, 162, 184, 0.15);
+    color: #0c5460;
+}
+
+.perf-very-superior {
+    background-color: rgba(102, 16, 242, 0.15);
+    color: #3d0066;
+}
+
+/* Collapsed sections */
+.collapsed-content {
+    display: none;
+}
+
+.collapsed-content.show {
+    display: block;
+}
+
+/* Qualitative data in tables */
+.qualitative-col {
+    font-style: italic;
+    color: #666;
+    font-size: 0.9em;
+}
